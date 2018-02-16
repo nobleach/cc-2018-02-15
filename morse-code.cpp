@@ -61,7 +61,11 @@ int main()
     };
 
     for (const auto& code : vec_of_strings) {
-        cout << morse_code[code] << endl;
+        if (code == "") {
+            cout << " ";
+        } else {
+            cout << morse_code[code];
+        }
     }
 
     return 0;
