@@ -54,12 +54,14 @@ int main()
     cout << "Enter the Morse Code string:\n";
     getline(cin, userInput);
 
+    // Set a word seperator regex
     regex ws_re("\\s");
     vector<string> vec_of_strings{
         sregex_token_iterator(userInput.begin(), userInput.end(), ws_re, -1), {}
     };
 
     for (const auto& code : vec_of_strings) {
+        // This would swallow spaces as they are recognized as "" in the string
         if (code == "") {
             cout << " ";
         } else {
