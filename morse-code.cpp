@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
-#include <sstream>
-#include <algorithm>
 #include <iterator>
 #include <vector>
 #include <unordered_map>
+#include <regex>
+
 
 int main()
 {
@@ -54,13 +54,14 @@ int main()
 
     cout << "Enter the Morse Code string:\n";
     getline(cin, userInput);
-    istringstream iss(userInput);
-    vector<string> vec_of_strings{istream_iterator<string>{iss},
-                      istream_iterator<string>{}};
 
+    regex ws_re("\\s");
+    vector<string> vec_of_strings{
+        sregex_token_iterator(userInput.begin(), userInput.end(), ws_re, -1), {}
+    };
 
     for (const auto& code : vec_of_strings) {
-        cout << morse_code[code];
+        cout << morse_code[code] << endl;
     }
 
     return 0;
